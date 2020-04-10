@@ -11,8 +11,7 @@ DATASET_PATH = "Cyclone_Database"
 # initializing the class labels in the dataset
 CLASSES = ["Cyclone", "Earthquake", "Flood", "Wildfire"]
 
-# defining the size of the training and validation set, this comes from the
-# train split and testing splits respectively.
+# defining the size of the training and validation set, this comes from the train split and testing splits.
 TRAIN_SPLIT = 0.75
 VAL_SPLIT = 0.1
 TEST_SPLIT = 0.25
