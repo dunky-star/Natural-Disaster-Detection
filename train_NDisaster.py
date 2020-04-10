@@ -33,35 +33,34 @@ import cv2
 import sys
 import os
 
-# construct the argument parser and parse the arguments
+# constructing the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-f", "--lr-find", type=int, default=0,
 	help="whether or not to find optimal learning rate")
 args = vars(ap.parse_args())
 
-# grab the paths to all images in our dataset directory and initialize
-# our lists of images and class labels
+# To get the paths to all images in our dataset directory and initialize our lists of images and class labels
 print("[INFO] loading images...")
 imagePaths = list(paths.list_images(config.DATASET_PATH))
 data = []
 labels = []
 
-# loop over the image paths
+# looping over the image paths
 for imagePath in imagePaths:
-	# extract the class label
+	# extracting the class label
 	label = imagePath.split(os.path.sep)[-2]
 
-	# load the image, convert it to RGB channel ordering, and resize
-	# it to be a fixed 224x224 pixels, ignoring aspect ratio
+	# loading the image and converting it to RGB channel ordering, and resizing
+	# to be a fixed 224x224 pixels while ignoring aspect ratio
 	image = cv2.imread(imagePath)
 	image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 	image = cv2.resize(image, (224, 224))
 
-	# update the data and labels lists, respectively
+	# updating the data and labels lists respectively
 	data.append(image)
 	labels.append(label)
 
-# convert the data and labels to NumPy arrays
+# converting the data and labels to NumPy arrays
 print("[INFO] processing data...")
 data = np.array(data, dtype="float32")
 labels = np.array(labels)
@@ -153,7 +152,7 @@ clr = CyclicLR(
 	max_lr=config.MAX_LR,
 	step_size=stepSize)
 
-# train the network
+# training the network
 print("[INFO] training network...")
 H = model.fit_generator(
 	aug.flow(trainX, trainY, batch_size=config.BATCH_SIZE),
