@@ -3,7 +3,7 @@
 
 # importing the necessary packages
 from tensorflow.keras.models import load_model
-from pyimagesearch import config
+from dunkyimages import config
 from collections import deque
 import numpy as np
 import argparse
